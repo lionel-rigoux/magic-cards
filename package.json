@@ -15,7 +15,5 @@
     "stack": "concurrently --kill-others-on-fail \"yarn server\" \"yarn scanner\""
   },
   "dependencies": {},
-  "devDependencies": {
-    "nodemon": "^1.18.10"
-  }
+  "devDependencies": {}
 }

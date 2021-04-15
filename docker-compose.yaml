@@ -1,9 +1,17 @@
-magic-cards:
-  build: .
-  restart: always
-  ports:
-    - "5000:5000"
-  devices:
-    - "/dev/input/event0:/dev/input/event0"
-  volumes:
-    - ./:/usr/src/app/
+version: '3.3'
+
+services:
+  magic-cards:
+    build: .
+    restart: always
+    ports:
+      - "5000:5000"
+    devices:
+      - "/dev/input/event0:/dev/input/event0"
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/server/node_modules
+      - /usr/src/app/scanner/node_modules
+      - /usr/src/app/client/node_modules
+      - /usr/src/app/server/public
