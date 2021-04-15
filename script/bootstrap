@@ -9,7 +9,7 @@ cd "$(dirname "$0")/.."
 echo "Installing dependencies..."
 
 npm install yarn -g
-npm install concurrently@5.1.0 -g
+npm install concurrently@5.3.0 -g
 
 yarn
 
