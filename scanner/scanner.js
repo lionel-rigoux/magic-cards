@@ -3,7 +3,7 @@ const cardProcessor = require('./CardProcessor')
 const config = require(__dirname + '/../config/config.json')
 
 const keys = 'X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX'
-const input = new InputEvent(`/dev/input/${config.input_device}`)
+const input = new InputEvent(`/dev/input/event0`)
 const keyboard = new InputEvent.Keyboard(input)
 
 let string = ''

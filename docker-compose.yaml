@@ -1,0 +1,9 @@
+magic-cards:
+  build: .
+  restart: always
+  ports:
+    - "5000:5000"
+  devices:
+    - "/dev/input/event0:/dev/input/event0"
+  volumes:
+    - ./:/usr/src/app/

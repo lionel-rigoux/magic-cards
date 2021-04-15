@@ -3,7 +3,7 @@
   "author": "Jon Maddox <jon@jonmaddox.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js"
+    "start": "if [[ ${NODE_ENV} == \"production\" ]]; then node server.js; else nodemon server.js; fi"
   },
   "dependencies": {
     "ejs": "^2.5.8",
@@ -13,6 +13,7 @@
     "spotify-web-api-node": "^3.0.0"
   },
   "devDependencies": {
+    "nodemon": "^1.18.10",
     "babel-eslint": "^8.2.2",
     "concurrently": "^3.5.0",
     "eslint": "^4.19.1",

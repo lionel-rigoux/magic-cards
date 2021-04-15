@@ -6,7 +6,5 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-export NODE_ENV=production
-
 script/bootstrap
 script/build
