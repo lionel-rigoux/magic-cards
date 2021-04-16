@@ -6,6 +6,7 @@ Magic Cards is pretty easy to use, but there's a bit to know while using it. Rat
 * [Installation](install.md)
 * [Actions](actions.md)
 * [Cards](cards.md)
+* [Development](development.md)
 
 ## Troubleshooting
 If you're having troubles, you can get help from the community on Spectrum.

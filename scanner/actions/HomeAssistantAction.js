@@ -3,11 +3,11 @@ const Action = require('./Action')
 const https = require('https')
 
 class HomeAssistantAction extends Action {
-  process() {
-    this.request(this.payload())
+  process(room) {
+    this.request(this.payload(room))
   }
 
-  payload() {
+  payload(room) {
     const envVars = this.envVars()
     const payload = {}
 
@@ -17,7 +17,9 @@ class HomeAssistantAction extends Action {
       }
       payload[key.toLowerCase()] = envVars[key]
     })
-
+    if (room) {
+      payload.magic_cards_room = room
+    }
     return payload
   }
 
@@ -33,12 +35,13 @@ class HomeAssistantAction extends Action {
     } else if (this.config.password) {
       headers['x-ha-access'] = this.config.password
     }
-
     const init = {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(payload),
     }
+    console.log('body:')
+    console.log(init.body)
 
     // Compare to false so that we don't disable SSL if option omitted
     if (this.config.verify_ssl === false) {

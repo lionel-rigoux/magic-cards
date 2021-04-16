@@ -67,7 +67,7 @@ class EditableCard extends React.Component {
     }
 
     const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ''
-    const testerURL = baseURL + '/test/' + this.props.card.code
+    const testerURL = baseURL + '/play/' + this.props.card.code
 
     fetch(testerURL, {method: 'post'})
   }

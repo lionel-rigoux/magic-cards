@@ -6,7 +6,7 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-echo "Starting Magic Cards..."
+echo "Starting Magic Cards in ${NODE_ENV}..."
 
 yarn --silent stack
 

@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const ejs = require('ejs')
 const SpotifyWebApi = require('spotify-web-api-node')
+const cardManager = require('./lib/CardManager')
 
 const config = require(__dirname + '/../config/config.json')
 
@@ -32,15 +33,8 @@ app.get('/', (req, res) => {
   res.sendfile('index.html')
 })
 
-app.get('/card/:id', (req, res) => {
-  const card = findCard(req.params.id)
-  ejs.renderFile('card.ejs', card, {}, (err, str) => {
-    res.send(str)
-  })
-})
-
-app.post('/test/:code', (req, res) => {
-  const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code}`
+app.post('/play/:code/:room?', (req, res) => {
+  const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code} ${req.params.room}`
   exec(command, function(error, stdout, stderr) {
     console.log(stdout, stderr, error)
   })

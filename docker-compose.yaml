@@ -9,9 +9,9 @@ services:
     devices:
       - "/dev/input/event0:/dev/input/event0"
     volumes:
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/src/app/server/node_modules
-      - /usr/src/app/scanner/node_modules
-      - /usr/src/app/client/node_modules
-      - /usr/src/app/server/public
+      - ./config:/usr/src/app/config
+      - ./server:/usr/src/app/server
+      - /usr/src/app/server/node_modules/
+      - /usr/src/app/server/public/
+      - ./scanner:/usr/src/app/scanner
+      - /usr/src/app/scanner/node_modules/

@@ -3,7 +3,9 @@
   "author": "Jon Maddox <jon@jonmaddox.com>",
   "license": "MIT",
   "scripts": {
-    "start": "if [[ ${NODE_ENV} == \"production\" ]]; then node server.js; else nodemon server.js; fi"
+    "start": "if [[ ${NODE_ENV} == \"production\" ]]; then yarn start-prod; else yarn start-dev; fi",
+    "start-prod": "node server.js",
+    "start-dev": "nodemon server.js"
   },
   "dependencies": {
     "ejs": "^2.5.8",

@@ -1,14 +1,24 @@
 FROM resin/raspberry-pi-alpine-node:9.11.2
 
-ARG ARG_ENV=production
-ENV NODE_ENV=$ARG_ENV
+ARG BUILD_ENV=production
+ENV NODE_ENV=$BUILD_ENV
+
+# install tools
+RUN npm install yarn -g
+RUN npm install concurrently@5.3.0 -g
 
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN npm install yarn -g
-RUN npm install concurrently@5.3.0 -g
+# Install dependencies
+RUN yarn
+ADD ./server/package.json /usr/src/app/server/package.json
+RUN cd server; yarn; cd ..;
+ADD ./scanner/package.json /usr/src/app/scanner/package.json
+RUN cd scanner; yarn; cd ..;
+ADD ./client/package.json /usr/src/app/client/package.json
+RUN cd client; yarn; cd ..;
 
 COPY . /usr/src/app
 

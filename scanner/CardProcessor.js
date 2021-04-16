@@ -6,7 +6,7 @@ const ChannelsAction = require('./actions/ChannelsAction')
 const ScriptAction = require('./actions/ScriptAction')
 
 class CardProcessor {
-  process(code) {
+  process(code,room) {
     console.log('Finding card...')
     let card = this.findCard(code)
 
@@ -16,7 +16,7 @@ class CardProcessor {
     }
 
     console.log(`Found card: ${card.title}. Processing...`)
-    this.processCard(card)
+    this.processCard(card, room)
   }
 
   findCard(code) {
@@ -27,7 +27,8 @@ class CardProcessor {
     return card
   }
 
-  processCard(card) {
+  processCard(card, room) {
+    console.log(room)
     const actionData = fs.readFileSync(__dirname + '/../config/actions.json').toString()
     const actions = JSON.parse(actionData)
     let action = actions[card.action]
@@ -52,7 +53,7 @@ class CardProcessor {
     }
 
     if (actionProcessor) {
-      actionProcessor.process()
+      actionProcessor.process(room)
     }
   }
 }

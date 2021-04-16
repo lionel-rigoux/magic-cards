@@ -6,7 +6,7 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-echo "Installing dependencies..."
+echo "Installing dependencies...(${NODE_ENV})"
 
 yarn
 
