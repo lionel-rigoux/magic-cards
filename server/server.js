@@ -19,18 +19,34 @@ const app = express()
 const port = process.env.PORT || 5000
 
 app.use('/graphql', graphQLAPI)
-app.use(express.static(path.join(__dirname, 'public')))
+const asset_dir_path = path.join(__dirname, 'public')
+app.use(express.static(asset_dir_path, {
+    index: false,
+    setHeaders: (response, file_path, file_stats) => {
+        // This function is called when “serve-static” makes a response.
+        // Note that `file_path` is an absolute path.
+
+        // Logging work
+        const relative_path = path.join(asset_dir_path, path.relative(asset_dir_path, file_path));
+        console.info(`@${Date.now()}`, "GAVE\t\t", relative_path);
+    },
+    maxage: 0
+}));
+
 
 if (process.env.NODE_ENV !== 'production') {
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.set('Cache-Control', 'no-store')
     next()
   })
+  app.disable('view cache');
+  app.set('etag', false);
 }
 
 app.get('/', (req, res) => {
-  res.sendfile('index.html')
+  res.sendFile('public/index.html' , { root : __dirname});
 })
 
 app.post('/play/:code/:room?', (req, res) => {
@@ -48,7 +64,7 @@ app.get('/metadata/spotify', (req, res) => {
   const user = req.query.user
 
   const responder = data => {
-    console.log(data)
+    //console.log(data)
     res.send(data.body)
   }
   const errorHandler = error => {

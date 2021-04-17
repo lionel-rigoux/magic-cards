@@ -40,9 +40,7 @@ class HomeAssistantAction extends Action {
       headers: headers,
       body: JSON.stringify(payload),
     }
-    console.log('body:')
-    console.log(init.body)
-
+    
     // Compare to false so that we don't disable SSL if option omitted
     if (this.config.verify_ssl === false) {
       init.agent = new https.Agent({

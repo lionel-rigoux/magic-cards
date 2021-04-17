@@ -43,19 +43,14 @@ class CardEditor extends React.Component {
     event.preventDefault()
 
     if (!validUrl.isUri(event.target.value)) {
+      console.log('Invalid URL')
       return
     }
-
-    const action = (this.props.data.actions || []).find(anAction => {
-      return anAction.name === this.state.action
-    })
 
     const url = event.target.value
 
     Metadata.fetchMetadata(url).then(metadata => {
-      if (action && action.type !== 'sonos') {
-        delete metadata.uri
-      }
+      console.log(JSON.stringify(metadata))
       this.setState(metadata)
     })
   }

@@ -20,9 +20,13 @@ RUN cd scanner; yarn; cd ..;
 ADD ./client/package.json /usr/src/app/client/package.json
 RUN cd client; yarn; cd ..;
 
+# copy app
 COPY . /usr/src/app
 
-RUN script/docker/setup
+# build client
+RUN cd client && yarn build  && cd ..
+RUN mv client/build/* server/public/
+
 
 EXPOSE 5000
 CMD [ "script/stack" ]
