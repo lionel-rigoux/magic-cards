@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# script/stack: Launch all the services
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "Starting Magic Cards Scanner in ${NODE_ENV}..."
+
+yarn --silent scanner
+
+echo "Magic Cards Scanner has been started."
