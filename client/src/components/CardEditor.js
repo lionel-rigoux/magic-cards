@@ -50,7 +50,6 @@ class CardEditor extends React.Component {
     const url = event.target.value
 
     Metadata.fetchMetadata(url).then(metadata => {
-      console.log(JSON.stringify(metadata))
       this.setState(metadata)
     })
   }

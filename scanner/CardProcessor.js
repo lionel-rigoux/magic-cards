@@ -28,7 +28,6 @@ class CardProcessor {
   }
 
   processCard(card, room) {
-    console.log(room)
     const actionData = fs.readFileSync(__dirname + '/../config/actions.json').toString()
     const actions = JSON.parse(actionData)
     let action = actions[card.action]
