@@ -1,9 +1,11 @@
-FROM resin/raspberry-pi-alpine-node:9.11.2
+FROM alpine:3.9
 
 ARG BUILD_ENV=production
 ENV NODE_ENV=$BUILD_ENV
 
 # install tools
+RUN apk add nodejs npm
+
 RUN npm install yarn -g
 RUN npm install concurrently@5.3.0 -g
 
