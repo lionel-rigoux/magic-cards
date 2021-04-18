@@ -17,9 +17,7 @@ class HomeAssistantAction extends Action {
       }
       payload[key.toLowerCase()] = envVars[key]
     })
-    if (room) {
-      payload.magic_cards_room = room
-    }
+    payload.magic_cards_room = room
     return payload
   }
 
@@ -40,7 +38,7 @@ class HomeAssistantAction extends Action {
       headers: headers,
       body: JSON.stringify(payload),
     }
-    
+
     // Compare to false so that we don't disable SSL if option omitted
     if (this.config.verify_ssl === false) {
       init.agent = new https.Agent({

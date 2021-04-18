@@ -50,7 +50,12 @@ app.get('/', (req, res) => {
 })
 
 app.post('/play/:code/:room?', (req, res) => {
-  const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code} ${req.params.room}`
+  var room = req.params.room;
+  if (!room) {
+    const config = require(__dirname + '/../config/config.json')
+    room = config.room
+  }
+  const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code} ${room}`
   exec(command, function(error, stdout, stderr) {
     console.log(stdout, stderr, error)
   })
