@@ -1,4 +1,4 @@
-const globalConfig = require(__dirname + '/../../config/config.json')
+const globalConfig = require(__dirname + '/../../../config/config.json')
 
 class Action {
   constructor(card, config) {

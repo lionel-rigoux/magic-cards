@@ -1,5 +1,4 @@
 const InputEvent = require('input-event')
-const cardProcessor = require('./CardProcessor')
 const config = require(__dirname + '/../config/config.json')
 
 const keys = 'X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX'
@@ -14,7 +13,29 @@ keyboard.on('keyup', function(event) {
     console.log(`Read Card ID: ${string}`)
 
     //process code
-    cardProcessor.process(string)
+
+    const protocol = this.config.ssl ? 'https://' : 'http://'
+    var baseURL = `${protocol}${this.config.host}:${this.config.port}
+    /play/${string}`
+
+    if (this.config.room) {
+      baseURL += `/${this.config.room}`
+    }
+
+    const init = {
+      method: 'POST',
+    }
+
+    // Compare to false so that we don't disable SSL if option omitted
+    if (this.config.verify_ssl === false) {
+      init.agent = new https.Agent({
+        rejectUnauthorized: false,
+      })
+    }
+
+    return fetch(baseURL, init)
+      .then(res => res.text())
+      .catch(error => console.log(error))
 
     // reset string for next scan
     string = ''

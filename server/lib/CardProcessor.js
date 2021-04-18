@@ -6,7 +6,7 @@ const ChannelsAction = require('./actions/ChannelsAction')
 const ScriptAction = require('./actions/ScriptAction')
 
 class CardProcessor {
-  process(code,room) {
+  process(code, room) {
     console.log('Finding card...')
     let card = this.findCard(code)
 
@@ -20,7 +20,7 @@ class CardProcessor {
   }
 
   findCard(code) {
-    const data = fs.readFileSync(__dirname + '/../config/cards.json').toString()
+    const data = fs.readFileSync(__dirname + '/../../config/cards.json').toString()
     const cards = JSON.parse(data)
 
     const card = cards.find(c => c.code === code)
@@ -28,7 +28,7 @@ class CardProcessor {
   }
 
   processCard(card, room) {
-    const actionData = fs.readFileSync(__dirname + '/../config/actions.json').toString()
+    const actionData = fs.readFileSync(__dirname + '/../../config/actions.json').toString()
     const actions = JSON.parse(actionData)
     let action = actions[card.action]
 

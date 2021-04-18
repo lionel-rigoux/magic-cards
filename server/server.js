@@ -4,6 +4,7 @@ const path = require('path')
 const ejs = require('ejs')
 const SpotifyWebApi = require('spotify-web-api-node')
 const cardManager = require('./lib/CardManager')
+const cardProcessor = require('./lib/CardProcessor')
 
 const config = require(__dirname + '/../config/config.json')
 
@@ -55,10 +56,11 @@ app.post('/play/:code/:room?', (req, res) => {
     const config = require(__dirname + '/../config/config.json')
     room = config.room
   }
-  const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code} ${room}`
-  exec(command, function(error, stdout, stderr) {
-    console.log(stdout, stderr, error)
-  })
+  cardProcessor.process(req.params.code, room)
+  //const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code} ${room}`
+  //exec(command, function(error, stdout, stderr) {
+  //  console.log(stdout, stderr, error)
+  //})
 
   res.send('ok')
 })
