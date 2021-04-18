@@ -20,7 +20,7 @@ RUN cd server; yarn; cd ..;
 ADD ./scanner/package.json /usr/src/app/scanner/package.json
 RUN cd scanner; yarn; cd ..;
 ADD ./client/package.json /usr/src/app/client/package.json
-RUN cd client; yarn; cd ..;
+RUN cd client; yarn --network-timeout 1000000000; cd ..;
 
 # copy app
 COPY . /usr/src/app
