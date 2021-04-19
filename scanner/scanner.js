@@ -15,8 +15,7 @@ keyboard.on('keyup', function(event) {
     //process code
 
     const protocol = config.ssl ? 'https://' : 'http://'
-    var baseURL = `${protocol}${config.host}:${config.port}
-    /play/${string}`
+    var baseURL = `${protocol}${config.host | "localhost"}:${config.port | "5000"}/play/${string}`
 
     if (config.room) {
       baseURL += `/${config.room}`
