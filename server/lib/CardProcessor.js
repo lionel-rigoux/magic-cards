@@ -7,7 +7,7 @@ const ScriptAction = require('./actions/ScriptAction')
 
 class CardProcessor {
   process(code, room) {
-    console.log('Finding card...')
+    console.log(`Finding card ${code}...`)
     let card = this.findCard(code)
 
     if (!card) {

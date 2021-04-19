@@ -56,6 +56,7 @@ app.post('/play/:code/:room?', (req, res) => {
     const config = require(__dirname + '/../config/config.json')
     room = config.room
   }
+  console.log (`received play request for card ${req.params.code} in ${room}`)
   cardProcessor.process(req.params.code, room)
   //const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code} ${room}`
   //exec(command, function(error, stdout, stderr) {
