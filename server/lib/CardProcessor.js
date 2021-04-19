@@ -23,7 +23,7 @@ class CardProcessor {
     const data = fs.readFileSync(__dirname + '/../../config/cards.json').toString()
     const cards = JSON.parse(data)
 
-    const card = cards.find(c => c.code === code)
+    const card = cards.find(c => c.code == code)
     return card
   }
 
