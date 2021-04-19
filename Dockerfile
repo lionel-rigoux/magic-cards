@@ -1,4 +1,4 @@
-FROM resin/raspberry-pi-alpine-node:9.11.2
+FROM alpine:3.9
 
 ARG BUILD_ENV=production
 ENV NODE_ENV=$BUILD_ENV
