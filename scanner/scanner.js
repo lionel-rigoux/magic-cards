@@ -1,6 +1,5 @@
 const InputEvent = require('input-event')
 const config = require(__dirname + '/../config/config.json')
-
 const keys = 'X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX'
 const input = new InputEvent(`/dev/input/event0`)
 const keyboard = new InputEvent.Keyboard(input)
@@ -14,12 +13,12 @@ keyboard.on('keyup', function(event) {
 
     //process code
 
-    const protocol = this.config.ssl ? 'https://' : 'http://'
-    var baseURL = `${protocol}${this.config.host}:${this.config.port}
+    const protocol = config.ssl ? 'https://' : 'http://'
+    var baseURL = `${protocol}${config.host}:${config.port}
     /play/${string}`
 
-    if (this.config.room) {
-      baseURL += `/${this.config.room}`
+    if (config.room) {
+      baseURL += `/${config.room}`
     }
 
     const init = {
@@ -27,7 +26,7 @@ keyboard.on('keyup', function(event) {
     }
 
     // Compare to false so that we don't disable SSL if option omitted
-    if (this.config.verify_ssl === false) {
+    if (config.verify_ssl === false) {
       init.agent = new https.Agent({
         rejectUnauthorized: false,
       })
