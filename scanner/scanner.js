@@ -12,10 +12,14 @@ keyboard.on('keyup', function(event) {
   if (event.code == 28) {
     console.log(`Read Card ID: ${string}`)
 
-    //process code
+    let cardCode = string
+    // reset string for next scan
+    string = ''
 
+
+    //process code
     const protocol = config.ssl ? 'https://' : 'http://'
-    var baseURL = `${protocol}${config.host | "localhost"}:${config.port | "5000"}/play/${string}`
+    var baseURL = `${protocol}${config.host | "localhost"}:${config.port | "5000"}/play/${cardCode}`
 
     if (config.room) {
       baseURL += `/${config.room}`
@@ -36,8 +40,6 @@ keyboard.on('keyup', function(event) {
       .then(res => res.text())
       .catch(error => console.log(error))
 
-    // reset string for next scan
-    string = ''
   } else {
     string += keys[event.code]
   }
