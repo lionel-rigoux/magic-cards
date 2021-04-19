@@ -30,7 +30,8 @@ keyboard.on('keyup', function(event) {
     }
 
     return fetch(baseURL, init)
-      .then(res => consol.log(res.text()))
+      .then(res => res.text())
+      .then(text => console.log(text));
       .catch(error => console.log(error))
 
   } else {
