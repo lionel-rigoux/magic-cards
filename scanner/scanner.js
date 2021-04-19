@@ -18,7 +18,7 @@ keyboard.on('keyup', function(event) {
 
 
     //process code
-    const protocol = config.ssl ? 'https://' : 'http://'
+    const protocol = 'http://'
     var baseURL = `${protocol}${config.host || "localhost"}:${config.port || "5000"}/play/${cardCode}`
 
     if (config.room) {
@@ -29,15 +29,8 @@ keyboard.on('keyup', function(event) {
       method: 'POST',
     }
 
-    // Compare to false so that we don't disable SSL if option omitted
-    if (config.verify_ssl === false) {
-      init.agent = new https.Agent({
-        rejectUnauthorized: false,
-      })
-    }
-
     return fetch(baseURL, init)
-      .then(res => res.text())
+      .then(res => consol.log(res.text()))
       .catch(error => console.log(error))
 
   } else {
