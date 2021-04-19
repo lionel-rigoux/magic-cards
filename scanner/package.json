@@ -8,7 +8,8 @@
     "start-dev": "nodemon scanner.js"
   },
   "dependencies": {
-    "input-event": "^1.2.2"
+    "input-event": "^1.2.2",
+    "node-fetch": "^2.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.10",
